@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>CHECKLIST</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+
+
+
+        }
+        .container {
+            max-width: 800px;
+            margin: 10px auto;
+            padding: 9px;
+            border: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 2px #838383;
+            border-radius: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+
+        }
+        .h4 {
+            font-weight: normal;
+            margin: 0;
+            color: #ffffff;
+            text-align: center;     
+            background-color: #017eff;
+            padding: 20px;
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 3px #838383;
+            border-radius: 20px;
+            font-size: large;
+        }
+
+        .input-field {
+            margin-bottom: 20px; 
+        }
+
+
+        .input-field label {
+            display: block;
+            margin-bottom: 4px;
+            margin-top: 10px;
+            color: #727272;
+            font-weight: normal;
+            font-size: 13px;
+            margin-left: 12px;
+
+
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+
+
+
+        }
+        .button-group button {
+            width: 50%;
+            margin: 0 2px;
+            padding: 10px 0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            border: 1px solid #f2f2f2;
+            background-color: #f2f2f2;
+
+
+        }
+        .button-group button.active {
+            color: #ffffff;
+        }
+        .button-group .bom.active {
+            background-color: #66bb6a;
+        }
+        .button-group .medio.active {
+            background-color: #ffeb3b;
+        }
+        .button-group .ruim.active {
+            background-color: #f44336;
+        }
+        .button-group .no-nivel.active {
+            background-color: #66bb6a;
+        }
+        .button-group .abaixo.active {
+            background-color: #f44336;
+        }
+        .button-group .sim.active {
+            background-color: #f44336;
+        }
+        .button-group .nao.active {
+            background-color: #66bb6a;
+        }
+        button.generate-btn {
+
+            width: 70%;
+            padding: 15px;
+            border: 2px;
+            border-radius: 20px;
+            background-color: #017eff;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-left: 15%;
+            margin-right: 15%;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 3px #838383;
+            font-size: 13px;
+        }
+
+
+        button.generate-btn:hover {
+            background-color: rgb(41, 145, 214);
+
+
+
+        }
+
+
+        input[type="text"], input[type="date"], input[type="time"], textarea, select {
+           
+            width: 100%;
+            padding: 10px;
+          
+            border-radius: 20px;
+            box-sizing: border-box;
+
+            border: 1px solid #f2f2f2;
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+            margin-top: 10px;
+            color: rgb(72, 72, 72);
+
+
+        }
+        textarea{
+            resize: vertical;
+            height: 100%;
+        }
+        .footer{
+            text-align: center;
+            padding: 10px 0;
+            background-color: transparent;
+            color: rgb(41, 128, 186); 
+            font-size: 9px;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="h4">
+            <h4>CHECKLIST DE MANUTENÇÃO DIÁRIO</h4>
+        </div>
+        <form id="checklist-form">
+            <div class="input-field">
+                <label for="fazenda">1. EM QUAL PROPRIEDADE ESTÁ A MAQUINA? OBRIGATORIO*</label>
+                <select id="fazenda" name="1. VOCÊ ESTÁ EM QUAL FAZENDA?"required>
+                   <option value="" disabled selected>SELECIONE A FAZENDA</option>
+                   <option value="FAZENDA RAÍZES">FAZENDA RAÍZES</option>
+                   <option value="FAZENDA PLANALTINA">FAZENDA PLANALTINA</option>
+               </select>
+           </div>
+            <div class="input-field">
+                <label for="responsavel">1. RESPONSÁVEL PELO CHECKLIST (OBRIGATÓRIO)*</label>
+                <input type="text" id="responsavel" name="01. RESPONSÁVEL PELO CHEKLIST:">
+            </div>
+            <div class="input-field hidden">
+                <label for="data">2. DATA DO CHECKLIST</label>
+                <input type="date" id="data" name="02. DATA DO CHECKLIST:">
+            </div>
+            <div class="input-field hidden">
+                <label for="hora">3. HORA DO CHECKLIST</label>
+                <input type="time" id="hora" name="03. HORA DO CHECKLIST:">
+            </div>
+            <div class="input-field">
+                 <label for="maquina">2. MÁQUINA E FROTA CHECADA (OBRIGATÓRIO)*</label>
+                 <select id="maquina" name="04. MÁQUINA E FROTA CHECADA:"required>
+                    <option value="" disabled selected>SELECIONE A MAQUINA E FROTA</option>
+
+                    <optgroup label="TRATORES">
+                    <option value="PUMA 230/ FROTA 4021">PUMA 230/ FROTA 4021</option>
+                    <option value="FARMALL 110/ FROTA 4022">FARMALL 110/ FROTA 4022</option>
+                    <option value="FARMALL 110/ FROTA 4023">FARMALL 110/ FROTA 4023</option>
+                    <option value="STEIGER 420/ FROTA 4024">STEIGER 420/ FROTA 4024</option>
+                    <option value="FARMALL 95/ FROTA 4015">FARMALL 95/ FROTA 4015</option>
+                    <option value="STEIGER AFS/ FROTA 4016">STEIGER AFS/ FROTA 4016</option>
+                    <option value="FARMALL 110/ FROTA 4017">FARMALL 110/ FROTA 4017</option>
+                    <option value="BM 85/ FROTA 4002">BM 85/ FROTA 4002</option>
+                    <option value="TL 65/ FROTA 4003">TL 65/ FROTA 4003</option>
+                    <option value="TL 75/ FROTA 4006">TL 75/ FROTA 4006</option>
+                    <option value="TL 95/ FROTA 4007">TL 95/ FROTA 4007</option>
+                    <option value="TM 7040/ FROTA 4008">TM 7040/ FROTA 4008</option>
+                    <option value="6110D/ FROTA 4009">6110D/ FROTA 4009</option>
+                    <option value="MAGNUM 340/ FROTA 4010">MAGNUM 340/ FROTA 4010</option>
+                    <option value="MAGNUM 235/ FROTA 4012">MAGNUM 235/ FROTA 4012</option>
+                    <option value="PUMA 170/ FROTA 4013">PUMA 170/ FROTA 4013</option>
+
+                    <optgroup label="PULVERIZADORES">
+                    <option value="PATRIOT 350/ FROTA 4011">PATRIOT 350/ FROTA 4011</option>
+                    <option value="PATRIOT 350/ FROTA 4020">PATRIOT 350/ FROTA 4020</option>
+
+                    <optgroup label="CARREGADEIRAS">
+                    <option value="WF20F/ FROTA 4014">WF20F/ FROTA 4014</option>
+                    <option value="W20F/ FROTA 4018">W20F/ FROTA 4018</option>
+                    <option value="W20F/ FROTA 4019">W20F/ FROTA 4019</option>
+
+                    <optgroup label="CAMINHÕES">
+                    <option value="G420 6X4/ FROTA 3009">G420 6X4/ FROTA 3009</option>
+                    <option value="1313 (MELOSA)/ FROTA 3005">1313 (MELOSA)/ FROTA 3005</option>
+                    <option value="1313 (PIPA)/ FROTA 3006">1313 (PIPA)/ FROTA 3006</option>
+                    <option value="D14000 (MUNCK)/ FROTA 3007">D14000 (MUNCK)/ FROTA 3007</option>
+                    <option value="G420 6X4/ FROTA 3009">G420 6X4/ FROTA 3009</option>
+                    <option value="31.280 (THOR)/ FROTA 3008">31.280 (THOR)/ FROTA 3008</option>
+
+                    <optgroup label="COLHEITADEIRAS">
+                    <option value="STS 9670/ FROTA 5001">STS 9670/ FROTA 5001</option>
+                    <option value="7230/ FROTA 5002">7230/ FROTA 5002</option>
+                    <option value="7230/ FROTA 5003">7230/ FROTA 5003</option>
+                    <option value="9250 AFS/ FROTA 5004">9250 AFS/ FROTA 5004</option>
+
+                    <optgroup label="ESCAVADEIRAS">
+                    <option value="CX220C/ FROTA 4019">CX220C/ FROTA 4019</option>        
+                </select>
+            </div>
+            <div class="input-field">
+                <label>3. NIVEL DO ÓLEO DO MOTOR</label>
+                <div class="button-group">
+                    <button type="button" class="no-nivel" onclick="setValue('oleo-motor', 'NO NÍVEL', this)">NO NÍVEL</button>
+                    <button type="button" class="abaixo" onclick="setValue('oleo-motor', 'ABAIXO DO NÍVEL', this)">ABAIXO DO NÍVEL</button>
+                </div>
+                <input type="hidden" id="oleo-motor" name="05. NIVEL DO ÓLEO DO MOTOR:">
+            </div>
+            <div class="input-field">
+                <label>4. NÍVEL DA ÁGUA DO RADIADOR</label>
+                <div class="button-group">
+                    <button type="button" class="no-nivel" onclick="setValue('agua-radiador', 'NO NÍVEL', this)">NO NÍVEL</button>
+                    <button type="button" class="abaixo" onclick="setValue('agua-radiador', 'ABAIXO DO NÍVEL', this)">ABAIXO DO NÍVEL</button>
+                </div>
+                <input type="hidden" id="agua-radiador" name="06. NÍVEL DA ÁGUA DO RADIADOR:">
+            </div>
+            <div class="input-field">
+                <label>5. NÍVEL DO ÓLEO DA TRANSMISSÃO</label>
+                <div class="button-group">
+                    <button type="button" class="no-nivel" onclick="setValue('oleo-transmissao', 'NO NÍVEL', this)">NO NÍVEL</button>
+                    <button type="button" class="abaixo" onclick="setValue('oleo-transmissao', 'ABAIXO DO NÍVEL', this)">ABAIXO DO NÍVEL</button>
+                </div>
+                <input type="hidden" id="oleo-transmissao" name="07. NÍVEL DO ÓLEO DA TRASMISSÃO:">
+            </div>
+            <div class="input-field">
+                <label>6. NÍVEL DO ÓLEO HIDRÁULICO</label>
+                <div class="button-group">
+                    <button type="button" class="no-nivel" onclick="setValue('oleo-hidraulico', 'NO NÍVEL', this)">NO NÍVEL</button>
+                    <button type="button" class="abaixo" onclick="setValue('oleo-hidraulico', 'ABAIXO DO NÍVEL', this)">ABAIXO DO NÍVEL</button>
+                </div>
+                <input type="hidden" id="oleo-hidraulico" name="08. NÍVEL DO ÓLEO HIDRÁULICO:">
+            </div>
+            <div class="input-field">
+                <label>7. CONDIÇÃO DO FILTRO DE AR?</label>
+                <div class="button-group">
+                    <button type="button" class="bom" onclick="setValue('filtro-ar', 'BOM', this)">BOM</button>
+                    <button type="button" class="medio" onclick="setValue('filtro-ar', 'MÉDIO', this)">MÉDIO</button>
+                    <button type="button" class="ruim" onclick="setValue('filtro-ar', 'RUIM', this)">RUIM</button>
+                </div>
+                <input type="hidden" id="filtro-ar" name="09. CONDIÇÃO DO FILTRO DE AR?">
+            </div>
+            <div class="input-field">
+                <label>8. CONDIÇÃO DO ENGRAXAMENTO DA MÁQUINA?</label>
+                <div class="button-group">
+                    <button type="button" class="bom" onclick="setValue('engraxamento', 'BOM', this)">BOM</button>
+                    <button type="button" class="medio" onclick="setValue('engraxamento', 'MÉDIO', this)">MÉDIO</button>
+                    <button type="button" class="ruim" onclick="setValue('engraxamento', 'RUIM', this)">RUIM</button>
+                </div>
+                <input type="hidden" id="engraxamento" name="10. CONDIÇÃO DO ENGRAXAMENTO DA MÁQUINA?">
+            </div>
+            <div class="input-field">
+                <label>9. CONDIÇÃO DO ENGRAXAMENTO DO IMPLEMENTO?</label>
+                <div class="button-group">
+                    <button type="button" class="bom" onclick="setValue('implemento', 'BOM', this)">BOM</button>
+                    <button type="button" class="medio" onclick="setValue('implemento', 'MÉDIO', this)">MÉDIO</button>
+                    <button type="button" class="ruim" onclick="setValue('implemento', 'RUIM', this)">RUIM</button>
+                </div>
+                <input type="hidden" id="implemento" name="11. CONDIÇÃO DO ENGRAXAMENTO DO IMPLEMENTO?">
+            </div>
+            <div class="input-field">
+                <label>10. CONDIÇÃO DOS PNEUS?</label>
+                <div class="button-group">
+                    <button type="button" class="bom" onclick="setValue('pneu', 'BOM', this)">BOM</button>
+                    <button type="button" class="medio" onclick="setValue('pneu', 'MÉDIO', this)">MÉDIO</button>
+                    <button type="button" class="ruim" onclick="setValue('pneu', 'RUIM', this)">RUIM</button>
+                </div>
+                <input type="hidden" id="pneu" name="12. QUAL A CONDIÇÃO DOS PNEUS?">
+            </div>
+            <div class="input-field">
+                <label>10. A MÁQUINA CONTÉM VAZAMENTOS?</label>
+                <div class="button-group">
+                    <button type="button" class="sim" onclick="setValue('vazamentos', 'SIM', this)">SIM</button>
+                    <button type="button" class="nao" onclick="setValue('vazamentos', 'NÃO', this)">NÃO</button>
+                </div>
+                <input type="hidden" id="vazamentos" name="13. A MÁQUINA CONTÉM VAZAMENTOS?">
+            </div>
+
+
+
+            <div class="input-field">
+                <label>11. POSSUI ERROS NO MONITOR/ PAINEL DE INSTRUMENTOS?</label>
+                <div class="button-group">
+                    <button type="button" class="sim" onclick="setValue('gps', 'SIM', this); toggleErrorCode(true)">SIM</button>
+                    <button type="button" class="nao" onclick="setValue('gps', 'NÃO', this); toggleErrorCode(false)">NÃO</button>
+                </div>
+                <input type="hidden" id="gps" name="14. POSSUI ERROS NO MONITOR/ PAINEL DE INSTRUMENTOS?">
+            </div>
+            <div class="input-field hidden" id="error-code-field">
+                <label for="codigo-erro">  DIGITE O CODIGO DO ERRO:</label>
+                <input type="text" id="codigo-erro" name="codigo-erro">
+            </div>    
+            
+            
+            <div class="input-field">
+                <label for="nome-mecanico">12. MECANICO RESPONSÁVEL</label>
+                <input type="text" id="nome-mecanico" name="nome-mecanico">
+            </div>
+            <div class="input-field">
+                <label>13. OBSERVAÇÃO (MÁX. 80 CARACTERES)</label>
+                <textarea id="observacoes" name="observacoes" rows="5" maxlength="80"></textarea>
+            </div>
+            <div class="button-group">
+                <button type="button" class="generate-btn" onclick="generateReport()">GERAR RELATORIO</button>
+            </div>
+        </form>
+    </div>
+    <footer class="footer">
+    CHECKLIST &copy; 2024 CELSO JUNIOR. TODOS OS DIREITOS RESERVADOS.
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.15/jspdf.plugin.autotable.min.js"></script>
+    <script>
+
+
+
+
+       document.addEventListener('DOMContentLoaded', function() {
+        const now = new Date();
+        const formattedDate = now.toISOString().split('T')[0] ;
+        const formattedTime = now.toTimeString().split(' ')[0];
+        document.getElementById('data').value = formattedDate;
+        document.getElementById('hora').value = formattedTime.slice(0, 5);
+        });
+
+
+
+       function setValue(fieldId, value, button) {
+            const field = document.getElementById(fieldId);
+            field.value = value;
+
+            const buttons = button.parentElement.getElementsByTagName('button');
+            for (let btn of buttons) {
+                btn.classList.remove('active');
+            }
+            button.classList.add('active');
+        }
+        function toggleErrorCode(show) {
+            const errorCodeField = document.getElementById('error-code-field');
+            if (show) {
+                errorCodeField.classList.remove('hidden');
+            } else {
+                errorCodeField.classList.add('hidden');
+            }
+        }
+        function generateReport() {
+
+            const form = document.getElementById('checklist-form');
+            const data = new FormData(form);
+            const report = {};
+
+            for (const [key, value] of data.entries()) {
+                report[key] = value;
+
+            }
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFont("helvetica");
+            doc.setFontSize(25);
+            doc.setTextColor(41, 128, 186);
+            doc.text('CHECKLIST DE MANUTENÇÃO DIARIA', 105, 20, null, null,'center');
+            const tableColumn = ["Nº / ITENS CHECADOS", "VERIFICAÇÃO"];
+            const tableRows = [];
+            for (const [key, value] of Object.entries(report)) {
+            if (key !== 'observacoes' && key !== 'nome-mecanico') {                 
+                    
+            let item = key.replace(/-/g, '').toUpperCase();
+
+
+            if (key === 'codigo-erro') item = '15. CÓDIGO DE ERRO EXIBIDO NO GPS';
+           
+            tableRows.push([item, value || 'NÃO APLICÁVEL']);
+        }
+        } 
+            doc.autoTable(tableColumn, tableRows, { startY: 30 });
+
+            // CAMPO OBSERVAÇÃO
+            doc.setFontSize(11);
+            doc.setTextColor (41, 128, 186);
+            doc.text('16. OBSERVAÇÕES GERAIS ___________________________________________________________', 105, 163, null, null, 'center',
+            doc.lastAutoTable.finalY + 11);{maxWidth:180};
+
+            // RESPOSTA OBSERVAÇÃO
+            doc.setFontSize(11);
+            doc.setTextColor (90, 90, 90);
+            doc.text(report['observacoes'] || '*SEM OBSERVAÇÕES IMPORTANTES*', 105, 170, null, null, 'center',
+            doc.lastAutoTable.finalY + 10); {maxWidth:180};
+
+            // CAMPO NOME MECANICO
+            doc.setFontSize(11);
+            doc.setTextColor (41, 128, 186);
+            doc.text('17. NOME DO MECÂNICO RESPONSÁVEL _______________________________________________', 105, 180, null, null, 'center',
+            doc.lastAutoTable.finalY + 30);
+
+           // RESPOSTA CAMPO MECANICO
+            doc.setFontSize(11);
+            doc.setTextColor (90, 90, 90);
+            doc.text(report['nome-mecanico'] || '*NÃO INFORMADO*',  105, 187, null, null, 'center',
+            doc.lastAutoTable.finalY + 10);
+
+            // ASSINATURA MECANICO
+            doc.setFontSize(11);
+            doc.setTextColor (90, 90, 90);
+            doc.text('ASSINATURA DO MECÂNICO (EM CASO DE LIBERAÇÃO):_________________________________', 105, 210, null, null, 'center',
+            doc.lastAutoTable.finalY + 80);
+            doc.setLineWidth(0.5);
+
+            // FRASE ATENÇÃO 
+            doc.setFontSize(12);
+            doc.setTextColor (90, 90, 90);
+            doc.text('"SUA VERIFICAÇÃO DIÁRIA É CRUCIAL PARA A SEGURANÇA.', 105, 235, null, null, 'center',
+            doc.lastAutoTable.finalY + 90);
+            doc.setFontSize(12);
+            doc.setTextColor (90, 90, 90);
+            doc.text('OBRIGADO POR CUIDAR DAS NOSSAS MAQUINAS E VEICULOS"', 105, 240, null, null, 'center',
+            doc.lastAutoTable.finalY + 95);
+
+           // NOME DOCUMENTO
+            doc.save(`Checklist_${new Date().toISOString().slice(0, 10)}.pdf`);
+        }
+    </script>
+</body>
+</html>
